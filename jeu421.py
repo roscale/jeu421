@@ -24,7 +24,7 @@ class Bot():
             self.des_lances.append(randint(1, 6))
 
         self.des_lances.sort(reverse=True)
-        self.affiche_des_lances()
+        #self.affiche_des_lances()
 
     def garde(self):
         for de in self.des_lances:
@@ -34,7 +34,7 @@ class Bot():
                 self.des_restants -= 1
 
         self.des_gardes.sort(reverse=True)
-        self.affiche_des_gardes()
+        #self.affiche_des_gardes()
 
     def affiche_des_lances(self):
         print("Dés lancés: ({})".format(", ".join(str(de) for de in self.des_lances)))
@@ -102,6 +102,21 @@ class Joueur():
     def affiche_des_gardes(self):
         print("Dés gardés: ({})".format(", ".join(str(de) for de in self.des_gardes)))
 
+nbre_joueurs = int(input("Nombre des joueurs : "))
+liste_joueurs = []
 
-da = Joueur("da")
-da.go()
+humain = Joueur("humain")
+liste_joueurs.append(humain)
+
+for i in range(nbre_joueurs - 1):
+    bot = Bot("da")
+    liste_joueurs.append(bot)
+
+while True:
+    # Tour
+    for joueur in liste_joueurs:
+        joueur.go()
+
+    # Score
+    for joueur in liste_joueurs:
+        
